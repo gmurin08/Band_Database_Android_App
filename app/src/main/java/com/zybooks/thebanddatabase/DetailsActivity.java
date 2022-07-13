@@ -15,5 +15,12 @@ public class DetailsActivity extends AppCompatActivity {
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         Fragment fragment = fragmentManager.findFragmentById(R.id.details_fragment_container);
+
+        if (fragment == null) {
+            fragment = new DetailsFragment();
+            fragmentManager.beginTransaction()
+                    .add(R.id.details_fragment_container, fragment)
+                    .commit();
+        }
     }
 }

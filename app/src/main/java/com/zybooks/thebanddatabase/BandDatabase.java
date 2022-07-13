@@ -1,3 +1,9 @@
+/*
+@author Gino Murin <gmurin@gmail.com>
+Band database currently works with a text file.
+SQL implementation will be added at a later time
+to improve modularity and efficiency.
+ */
 package com.zybooks.thebanddatabase;
 
 import android.content.Context;
@@ -10,6 +16,7 @@ public class BandDatabase {
     private static BandDatabase sBandDatabase;
     private List<Band> mBands;
 
+    //Singleton pattern to prevent multiple band database instances
     public static BandDatabase getInstance(Context context) {
         if (sBandDatabase == null) {
             sBandDatabase = new BandDatabase(context);
