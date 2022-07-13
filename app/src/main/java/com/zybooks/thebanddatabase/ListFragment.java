@@ -1,64 +1,56 @@
 package com.zybooks.thebanddatabase;
 
+import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ListFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.List;
+
 public class ListFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public ListFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ListFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ListFragment newInstance(String param1, String param2) {
-        ListFragment fragment = new ListFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list, container, false);
+                             Bundle savedInstanceState){
+        View view = inflater.inflate(R.layout.fragment_list, container, false);
+        LinearLayout layout = (LinearLayout) view;
+
+        List<Band> bandList = BandDatabase.getInstance(getContext()).getBands();
+
+        //Iterate over list of bands and create a button for each
+        for(int i = 0; i < bandList.size(); i++){
+            Button button = new Button(getContext());
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT);
+            layoutParams.setMargins(0,0,0,10);
+            button.setLayoutParams(layoutParams);
+
+            //Set button info to correspond with band name and id
+            Band band = BandDatabase.getInstance(getContext()).getBand(i+1);
+            button.setText(band.getName());
+            button.setTag(Integer.toString(band.getId()));
+
+            //All buttons use the same click listener
+            button.setOnClickListener(buttonClickListener);
+
+            //Add button to LinearLayout
+            layout.addView(button);
+        }
+
+        return view;
     }
+
+    private View.OnClickListener buttonClickListener = new View.OnClickListener(){
+        @Override
+        public void onClick(View view){
+            //Start DetailsActivity
+            Intent intent = new Intent(getActivity(), DetailsActivity.class);
+            startActivity(intent);
+        }
+    };
 }
