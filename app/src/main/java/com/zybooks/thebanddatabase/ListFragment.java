@@ -50,6 +50,8 @@ public class ListFragment extends Fragment {
         public void onClick(View view){
             //Start DetailsActivity
             Intent intent = new Intent(getActivity(), DetailsActivity.class);
+            String bandId = (String) view.getTag();
+            intent.putExtra(DetailsActivity.EXTRA_BAND_ID, Integer.parseInt(bandId));
             startActivity(intent);
         }
     };

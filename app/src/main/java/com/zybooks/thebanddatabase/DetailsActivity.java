@@ -8,6 +8,8 @@ import android.os.Bundle;
 
 public class DetailsActivity extends AppCompatActivity {
 
+    public static final String EXTRA_BAND_ID = "bandId";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,7 +19,8 @@ public class DetailsActivity extends AppCompatActivity {
         Fragment fragment = fragmentManager.findFragmentById(R.id.details_fragment_container);
 
         if (fragment == null) {
-            fragment = new DetailsFragment();
+            int bandId = getIntent().getIntExtra(EXTRA_BAND_ID, 1);
+            fragment = DetailsFragment.newInstance(bandId);
             fragmentManager.beginTransaction()
                     .add(R.id.details_fragment_container, fragment)
                     .commit();
