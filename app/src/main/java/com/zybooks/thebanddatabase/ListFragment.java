@@ -1,5 +1,6 @@
 package com.zybooks.thebanddatabase;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
@@ -12,6 +13,14 @@ import android.widget.LinearLayout;
 import java.util.List;
 
 public class ListFragment extends Fragment {
+
+    // For the activity to implement
+    public interface OnBandSelectedListener{
+        void onBandSelected(int bandId);
+    }
+
+    //Reference to the activity
+    private OnBandSelectedListener mListener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,14 +54,30 @@ public class ListFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnBandSelectedListener) {
+            mListener = (OnBandSelectedListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnBandSelectedListener");
+        }
+    }
+
+    @Override
+    public void onDetach(){
+        super.onDetach();
+        mListener = null;
+    }
+
+
     private View.OnClickListener buttonClickListener = new View.OnClickListener(){
         @Override
         public void onClick(View view){
             //Start DetailsActivity
-            Intent intent = new Intent(getActivity(), DetailsActivity.class);
             String bandId = (String) view.getTag();
-            intent.putExtra(DetailsActivity.EXTRA_BAND_ID, Integer.parseInt(bandId));
-            startActivity(intent);
+            mListener.onBandSelected(Integer.parseInt(bandId));
         }
     };
 }
