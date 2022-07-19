@@ -13,6 +13,14 @@ public class DetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Terminate if two panes are displaying since ListActivity should be displaying both panes
+        boolean isTwoPanes = getResources().getBoolean(R.bool.twoPanes);
+        if (isTwoPanes) {
+            finish();
+            return;
+        }
+
         setContentView(R.layout.activity_details);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
