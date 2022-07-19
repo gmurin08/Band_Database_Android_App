@@ -4,9 +4,33 @@
         <item>The Beatles</item>
         <item>Nirvana</item>
         <item>U2</item>
+        <item>Radiohead</item>
+        <item>Pearl Jam</item>
+        <item>Foo Fighters</item>
+        <item>Weezer</item>
+        <item>Alice In Chains</item>
+        <item>Blink-182</item>
+        <item>Oasis</item>
+        <item>Pantera</item>
+        <item>Bon Jovi</item>
+        <item>No Doubt</item>
+        <item>R.E.M.</item>
+        <item>Blur</item>
     </string-array>
 
     <string-array name="descriptions">
+        <item>An English rock band that formed in Liverpool in 1960.</item>
+        <item>An American rock band that formed in Washington in 1987.</item>
+        <item>An Irish rock band from Dublin that formed in 1976.</item>
+        <item>An English rock band that formed in Liverpool in 1960.</item>
+        <item>An American rock band that formed in Washington in 1987.</item>
+        <item>An Irish rock band from Dublin that formed in 1976.</item>
+        <item>An English rock band that formed in Liverpool in 1960.</item>
+        <item>An American rock band that formed in Washington in 1987.</item>
+        <item>An Irish rock band from Dublin that formed in 1976.</item>
+        <item>An English rock band that formed in Liverpool in 1960.</item>
+        <item>An American rock band that formed in Washington in 1987.</item>
+        <item>An Irish rock band from Dublin that formed in 1976.</item>
         <item>An English rock band that formed in Liverpool in 1960.</item>
         <item>An American rock band that formed in Washington in 1987.</item>
         <item>An Irish rock band from Dublin that formed in 1976.</item>
