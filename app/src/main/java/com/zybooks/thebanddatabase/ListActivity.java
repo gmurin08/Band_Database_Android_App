@@ -6,7 +6,9 @@ import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.os.Bundle;
-
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 public class ListActivity extends AppCompatActivity
 implements ListFragment.OnBandSelectedListener{
 
@@ -42,12 +44,38 @@ implements ListFragment.OnBandSelectedListener{
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.appbar_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
 
         // Save state when something is selected
         if (mBandId != -1) {
             savedInstanceState.putInt(KEY_BAND_ID, mBandId);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_add:
+                // Add selected
+                return true;
+
+            case R.id.action_logout:
+                // Logout selected
+                return true;
+
+            case R.id.action_about:
+                // About selected
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 
@@ -69,4 +97,6 @@ implements ListFragment.OnBandSelectedListener{
                     .commit();
         }
     }
+
+
 }

@@ -34,4 +34,6 @@ public class DetailsActivity extends AppCompatActivity {
                     .commit();
         }
     }
+
+
 }
