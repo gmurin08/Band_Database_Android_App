@@ -39,4 +39,8 @@
     <string name="action_about">About</string>
     <string name="action_logout">Log Out</string>
     <string name="action_add">Add</string>
+    <string name="about">About: Band Database</string>
+    <string name="about_desc">This app was designed as a means to learn more about Android
+    development. The app implements many of the essential features necessary to
+    develop a modern model app such as activities, fragments, menu bars, and navigation.</string>
 </resources>

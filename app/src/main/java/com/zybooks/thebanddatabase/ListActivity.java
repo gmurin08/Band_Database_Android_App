@@ -63,7 +63,7 @@ implements ListFragment.OnBandSelectedListener{
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_add:
-                // Add selected
+
                 return true;
 
             case R.id.action_logout:
@@ -71,7 +71,8 @@ implements ListFragment.OnBandSelectedListener{
                 return true;
 
             case R.id.action_about:
-                // About selected
+                Intent intent = new Intent(this, AboutActivity.class);
+                startActivity(intent);
                 return true;
 
             default:
